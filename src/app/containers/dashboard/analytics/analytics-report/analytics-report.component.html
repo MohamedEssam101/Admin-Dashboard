@@ -1,0 +1,78 @@
+<div
+  class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm flex flex-col h-full"
+>
+  <!-- Header Section -->
+  <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+    <div class="flex items-center">
+      <span class="text-lg font-bold mr-6">Report</span>
+      <div
+        class="flex justify-start items-center gap-2 border opacity-75 border-gray-300 pl-3 pr-2 rounded-full text-xs cursor-pointer text-gray-600"
+      >
+        <span>Sales</span>
+        <mat-icon class="p-0 m-0 leading-0 translate-y-0.5"
+          >arrow_drop_down</mat-icon
+        >
+      </div>
+    </div>
+    <div class="flex gap-2">
+      <button
+        class="px-3 py-2 rounded text-sm transition-all"
+        [ngClass]="{
+          'bg-blue-100 text-blue-600 font-bold':
+            (selectedPeriod$ | async) === 'week',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'week'
+        }"
+        (click)="onPeriodChange('week')"
+      >
+        Week
+      </button>
+
+      <button
+        class="px-3 py-2 rounded text-sm transition-all"
+        [ngClass]="{
+          'bg-blue-100 text-blue-600 font-bold':
+            (selectedPeriod$ | async) === 'month',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'month'
+        }"
+        (click)="onPeriodChange('month')"
+      >
+        Month
+      </button>
+
+      <button
+        class="px-3 py-2 rounded text-sm transition-all"
+        [ngClass]="{
+          'bg-blue-100 text-blue-600 font-bold':
+            (selectedPeriod$ | async) === 'year',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'year'
+        }"
+        (click)="onPeriodChange('year')"
+      >
+        Year
+      </button>
+    </div>
+  </div>
+
+  <!-- Chart Container - Now with proper height management -->
+  <div *ngIf="chartOptions; else chartLoading">
+    <apx-chart
+      #chart
+      [series]="chartOptions.series!"
+      [chart]="chartOptions.chart!"
+      [xaxis]="chartOptions.xaxis!"
+      [yaxis]="chartOptions.yaxis!"
+      [stroke]="chartOptions.stroke!"
+      [fill]="chartOptions.fill!"
+      [markers]="chartOptions.markers!"
+      [grid]="chartOptions.grid!"
+      [tooltip]="chartOptions.tooltip!"
+      [dataLabels]="chartOptions.dataLabels!"
+    ></apx-chart>
+  </div>
+  <ng-template #chartLoading>
+    <div class="text-center text-gray-500 p-10">Loading Chart...</div>
+  </ng-template>
+</div>

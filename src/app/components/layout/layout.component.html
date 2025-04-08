@@ -1,0 +1,10 @@
+<div class="h-screen flex">
+  <app-sidebar></app-sidebar>
+  <div class="flex flex-col flex-1 min-w-0">
+    <!-- Ensures flex container takes available space -->
+    <app-header></app-header>
+    <main class="flex-1 p-8 bg-slate-100 w-full h-full overflow-y-scroll">
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div>

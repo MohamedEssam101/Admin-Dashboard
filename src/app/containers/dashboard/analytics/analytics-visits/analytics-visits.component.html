@@ -1,0 +1,66 @@
+<div class="h-full bg-white p-5 rounded-lg border border-gray-200">
+  <div class="flex justify-between items-center">
+    <h2 class="!text-2xl !font-bold text-gray-800">Visits</h2>
+
+    <div class="flex space-x-3">
+      <button
+        class="text-sm font-bold cursor-pointer"
+        [ngClass]="{
+          'text-blue-600 font-bold': (selectedPeriod$ | async) === 'week',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'week'
+        }"
+        (click)="onPeriodChange('week')"
+        aria-label="View weekly data"
+      >
+        W
+      </button>
+
+      <button
+        class="text-sm font-bold cursor-pointer"
+        [ngClass]="{
+          'text-blue-600 font-bold': (selectedPeriod$ | async) === 'month',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'month'
+        }"
+        (click)="onPeriodChange('month')"
+        aria-label="View monthly data"
+      >
+        M
+      </button>
+
+      <button
+        class="text-sm font-bold cursor-pointer"
+        [ngClass]="{
+          'text-blue-600 font-bold': (selectedPeriod$ | async) === 'year',
+          'text-gray-600 hover:bg-gray-100':
+            (selectedPeriod$ | async) !== 'year'
+        }"
+        (click)="onPeriodChange('year')"
+        aria-label="View yearly data"
+      >
+        Y
+      </button>
+    </div>
+  </div>
+  <div>
+    <div *ngIf="chartOptions; else chartLoading">
+      <apx-chart
+        #chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [yaxis]="chartOptions.yaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [plotOptions]="chartOptions.plotOptions"
+        [fill]="chartOptions.fill"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [grid]="chartOptions.grid"
+      ></apx-chart>
+    </div>
+  </div>
+  <ng-template #chartLoading>
+    <div class="text-center text-gray-500 p-10">Loading Chart...</div>
+  </ng-template>
+</div>

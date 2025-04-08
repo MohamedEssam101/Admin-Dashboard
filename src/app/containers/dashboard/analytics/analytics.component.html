@@ -1,0 +1,29 @@
+<div class="flex flex-col gap-5 w-full">
+  <p class="font-semibold text-xl">Analytics</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2.5 w-full">
+    <app-analytics-card
+      icon="show_chart"
+      label="total revenue"
+      [value]="(analyticsData$ | async)?.totalRevenue || 0"
+    ></app-analytics-card>
+    <app-analytics-card
+      icon="attach_money"
+      label="today revenue"
+      [value]="(analyticsData$ | async)?.todayRevenue || 0"
+    ></app-analytics-card
+    ><app-analytics-card
+      icon="remove_shopping_cart"
+      label="items sold"
+      [value]="(analyticsData$ | async)?.itemsSold || 0"
+    ></app-analytics-card
+    ><app-analytics-card
+      icon="supervisor_account"
+      label="users active"
+      [value]="(analyticsData$ | async)?.usersActive || 0"
+    ></app-analytics-card>
+  </div>
+  <div class="flex flex-col xl:flex-row gap-4 h-[40vh]">
+    <app-analytics-report class="xl:w-[80%]"></app-analytics-report>
+    <app-analytics-visits class="xl:w-[20%]"></app-analytics-visits>
+  </div>
+</div>
