@@ -7,7 +7,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { analyticsResponse } from '../interfaces/analyticsData';
+import { analyticsResponse } from '../interfaces/analytics-interface';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
