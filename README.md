@@ -42,7 +42,6 @@ A modern, responsive dashboard application built with Angular.
 ├─ src/                  # Source code
 │  ├─ app/               # Application code
 │  │  ├─ components/     # Reusable UI components
-│  │  ├─ header/      # Application header
 │  │  ├─ containers/     # Page section containers
 │  │  ├─ interfaces/     # TypeScript interfaces
 │  │  ├─ services/       # Data services
