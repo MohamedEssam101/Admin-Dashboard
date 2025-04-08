@@ -3,7 +3,7 @@ A modern, responsive dashboard application built with Angular.
 
 ## Setup Instructions
 ### Prerequisites
-- Node.js (v18 or higher)
+- Angular (v16 or higher)
 - npm (v9 or higher)
 ### Installation
 1. Clone the repository
