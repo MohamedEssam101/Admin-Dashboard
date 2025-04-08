@@ -149,6 +149,4 @@ ng e2e
 4. **Performance Optimization**: Further optimize bundle size and initial load time
 5. **Accessibility Enhancements**: Improve screen reader support and keyboard navigation
 
-## License
 
-MIT © [Your Name]
