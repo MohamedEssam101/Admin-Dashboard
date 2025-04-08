@@ -2,7 +2,7 @@
 
 A modern, responsive dashboard application built with Angular.
 
-**[🔗 Live Preview](https://dashboard-app-demo.vercel.app)** | **[💻 GitHub Repository](https://github.com/username/dashboard-app)**
+**[🔗 Live Preview](https://admin-dashboard-orcin-pi-15.vercel.app/)** | **[💻 GitHub Repository](https://github.com/MohamedEssam101/Admin-Dashboard)**
 
 ## Features
 
@@ -18,7 +18,6 @@ A modern, responsive dashboard application built with Angular.
 
 - **Performance Optimizations**
   - Optimized asset loading
-  - Efficient component architecture
   - Lazy-loaded modules
 
 - **Data Visualization**
