@@ -42,22 +42,10 @@ A modern, responsive dashboard application built with Angular.
 ├─ src/                  # Source code
 │  ├─ app/               # Application code
 │  │  ├─ components/     # Reusable UI components
-│  │  ├─ layout/         # Layout components
-│  │  │  ├─ sidebar/     # Navigation sidebar
-│  │  │  └─ header/      # Application header
+│  │  ├─ header/      # Application header
 │  │  ├─ containers/     # Page section containers
 │  │  ├─ interfaces/     # TypeScript interfaces
-│  │  │  ├─ analytics-interface.ts
-│  │  │  └─ sales-interface.ts
 │  │  ├─ services/       # Data services
-│  │  │  └─ ...
-│  │  ├─ routes.ts       # Application routes
-│  │  ├─ app.component.css
-│  │  ├─ app.component.html
-│  │  ├─ app.component.spec.ts
-│  │  ├─ app.component.ts
-│  │  ├─ app.config.ts
-│  │  └─ app.routes.ts
 │  ├─ index.html         # Main HTML entry point
 │  ├─ main.ts            # Main entry point
 │  └─ styles.css         # Global styles
