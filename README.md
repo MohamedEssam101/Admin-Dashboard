@@ -1,27 +1,78 @@
-# DashboardApp
+# Dashboard App
+A modern, responsive dashboard application built with Angular.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.14.
+## Setup Instructions
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+### Installation
+1. Clone the repository
+   ```
+   git clone <repository-url>
+   cd dashboard-app
+   ```
 
-## Development server
+2. Install dependencies
+   ```
+   npm install
+   ```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+3. Run the development server
+   ```
+   ng serve
+   ```
 
-## Code scaffolding
+4. Access the application at `http://localhost:4200/`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Project Architecture
 
-## Build
+### Core Structure
+- **Components** - Reusable UI elements
+- **Containers** - Page layouts that use components
+- **Services** - Data fetching and business logic
+- **interfaces** - TypeScript interfaces for data types
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Key Components
+- **Sidebar** - Navigation menu with route buttons
+- **Header** - Top app bar with user information and notifications
+- **Analytics Components** - Various data visualization elements
+- **Route Button** - Navigation item used in sidebar
 
-## Running unit tests
+### Services
+- **Visits Report Service** - Provides sales data for charts
+- **Sales Report Service** - Provides sales data for charts
+- **Analytics Service** - Provides analytics data for dashboard
+- **Routes Service** - Provides analytics data for dashboard
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Design Choices and Libraries
 
-## Running end-to-end tests
+### UI Framework
+- **Angular Material** - Used for icons and basic UI components
+- **Tailwind CSS** - Used for styling and responsive design
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Chart Library
+- **ng-apexcharts** - Used for all data visualizations
+  - Selected for its extensive feature set, modern aesthetics, and excellent customization options
+  - Provides responsive charts with animations and interactive tooltips
+  - Better suited for complex dashboard visualizations compared to alternatives like ng2-charts or ngx-charts
 
-## Further help
+### State Management
+- Using Angular's built-in services with RxJS for state management
+- BehaviorSubject for maintaining component state
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Routing
+- Angular Router with lazy loading for better performance
+
+## Trade-offs and Considerations
+
+- **Performance vs. Features** - Used lazy loading to balance feature-rich components with fast initial load times
+- **Chart Library** - Chose ng-apexcharts for its powerful features despite slightly larger bundle size compared to simpler alternatives
+- **Styling Approach** - Selected Tailwind CSS for rapid development despite learning curve and larger initial CSS payload
+- **Accessibility** - Implemented keyboard navigation and screen reader support throughout the application
+- **Responsive Design** - Application is fully responsive across mobile, tablet and desktop devices
+
+## Future Improvements
+
+- Further componentization of UI elements for better reusability
+- Implement more comprehensive unit tests
+- Add end-to-end tests .
