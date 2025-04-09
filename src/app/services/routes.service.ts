@@ -11,13 +11,13 @@ export interface IRoute {
 export class RoutesService {
   activeRoute = new BehaviorSubject<string>('dashboard');
   routes: IRoute[] = [
-    { href: '/', label: 'dashboard', icon: 'house' },
+    { href: '/dashboard', label: 'dashboard', icon: 'house' },
     {
-      href: '/',
+      href: '/orders',
       label: 'orders',
       icon: 'shopping_cart',
     },
-    { href: '/', label: 'items', icon: 'other_houses' },
+    { href: '/products', label: 'products', icon: 'other_houses' },
     { href: '/', label: 'transaction', icon: 'receipt' },
     { href: '/', label: 'reports', icon: 'receipt_long' },
   ];
@@ -26,7 +26,4 @@ export class RoutesService {
     { href: '/', label: 'support', icon: 'contact_support' },
     { href: '/', label: 'settings', icon: 'settings' },
   ];
-  setIsActive(label: string) {
-    this.activeRoute.next(label);
-  }
 }

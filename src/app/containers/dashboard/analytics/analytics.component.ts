@@ -25,8 +25,8 @@ export class AnalyticsComponent implements OnInit {
   protected analyticsData$!: Observable<analyticsResponse | null>;
 
   ngOnInit() {
-    this.analyticsData$ = this.analyticsService.products$;
-
     this.analyticsService.getAnalyticsData().subscribe();
+
+    this.analyticsData$ = this.analyticsService.products$;
   }
 }

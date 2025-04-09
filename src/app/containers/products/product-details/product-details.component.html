@@ -1,0 +1,28 @@
+@if (product) {
+<div class="p-6 bg-white rounded-xl shadow-md flex flex-col gap- 4">
+  <img
+    [src]="product.image"
+    alt="{{ product.title }}"
+    class="w-40 h-40 object-contain rounded-lg shadow-sm bg-gray-50"
+  />
+
+  <div class="flex flex-col gap-2 flex-1">
+    <div>
+      <span class="text-xl font-bold text-gray-800">{{ product.title }}</span>
+      <p class="text-sm font-bold text-gray-500 capitalize">
+        category : {{ product.category }}
+      </p>
+    </div>
+
+    <p class="text-black-600 leading-relaxed mt-2 text-lg font-medium">
+      {{ product.description }}
+    </p>
+
+    <div class="mt-4 text-xl font-semibold">
+      Price : ${{ product.price.toFixed(2) }}
+    </div>
+  </div>
+</div>
+} @else {
+<div class="text-gray-400 text-sm">No product selected</div>
+}

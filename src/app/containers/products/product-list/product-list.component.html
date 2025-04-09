@@ -1,0 +1,41 @@
+<table class="min-w-full bg-white rounded-lg shadow-sm text-sm text-gray-700">
+  <thead>
+    <tr class="text-left border-b text-gray-500">
+      <th class="p-4">Item</th>
+      <th class="p-4">Category</th>
+      <th class="p-4">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (productsForDisplay$ | async; as products) { @for (product of
+    products;track product.id) {
+    <tr
+      class="border-b hover:bg-gray-50 transition cursor-pointer"
+      (click)="showProductDetails(product)"
+    >
+      <td class="p-4 flex items-center space-x-3">
+        <img
+          [src]="product.image"
+          alt="product"
+          class="w-10 h-10 rounded-full object-cover"
+        />
+        <span class="font-medium">{{ product.title }}</span>
+      </td>
+      <td class="p-4 capitalize">{{ product.category }}</td>
+      <td class="p-4 font-semibold">${{ product.price.toFixed(2) }}</td>
+    </tr>
+    @if (selectedProductId === product.id) {
+    <tr>
+      <td colspan="3" class="bg-gray-50 p-4">
+        <app-product-details [product]="product"></app-product-details>
+      </td>
+    </tr>
+    } } } @else {
+    <tr>
+      <td colspan="3" class="p-4 text-center text-gray-400">
+        Loading products...
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

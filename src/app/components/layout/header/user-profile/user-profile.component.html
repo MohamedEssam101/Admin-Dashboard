@@ -1,7 +1,9 @@
 <div class="flex gap-2 justify-center items-center">
   <div class="rounded-md p-1 w-10 h-10 bg-black"></div>
   <div class="flex gap-2 text-sm font-bold">
-    <span>Johny Larsen</span>
+    <span>{{
+      (userData$ | async)?.firstName + " " + (userData$ | async)?.lastName
+    }}</span>
     <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
 </div>

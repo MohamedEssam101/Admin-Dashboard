@@ -24,8 +24,12 @@
   >
     <div class="rounded-md p-1 w-10 h-10 bg-black"></div>
     <div class="hidden flex-col lg:flex">
-      <span class="font-bold text-sm text-black">Jabastinv</span>
-      <span class="text-xs">Company</span>
+      <span class="font-bold text-sm text-black">
+        {{
+          (userData$ | async)?.firstName + " " + (userData$ | async)?.lastName
+        }}
+      </span>
+      <span class="text-xs"> {{ (userData$ | async)?.role }} </span>
     </div>
     <mat-icon class="ml-auto !hidden lg:inline-block"
       >keyboard_arrow_right</mat-icon

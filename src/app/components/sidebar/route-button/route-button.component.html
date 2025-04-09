@@ -1,15 +1,15 @@
 <button
+  [routerLink]="[route.href]"
+  routerLinkActive
+  #rla="routerLinkActive"
+  [routerLinkActiveOptions]="{ exact: route.href === '/' }"
   class="transition-all font-bold flex gap-4 w-full px-3 py-4 justify-center lg:justify-start capitalize rounded-lg"
   [ngClass]="{
-    'bg-blue-100 text-blue-600 opacity-100 border border-black':
-      (isActive$ | async),
+    'bg-blue-100 text-blue-600 opacity-100 border border-black': rla.isActive,
     'opacity-35 hover:opacity-75 hover:bg-blue-50 hover:text-blue-400':
-      (isActive$ | async) === false
+      !rla.isActive
   }"
-  (click)="[onClick()]"
 >
-  <!-- icon     -->
   <mat-icon class="text-grey-500">{{ route.icon }}</mat-icon>
-
   <span class="transition-all hidden lg:inline-block">{{ route.label }}</span>
 </button>
