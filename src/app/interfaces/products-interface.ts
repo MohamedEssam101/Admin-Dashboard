@@ -19,3 +19,4 @@ export interface ProductViewModel {
   category: string;
   price: number;
 }
+//
