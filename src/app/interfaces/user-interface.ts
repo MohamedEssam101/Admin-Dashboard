@@ -9,4 +9,5 @@ export interface UserData {
   username: string;
   birthDate: string;
   role: 'admin' | 'moderator' | 'user';
+  //
 }
