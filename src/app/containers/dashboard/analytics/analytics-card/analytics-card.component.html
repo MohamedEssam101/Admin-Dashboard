@@ -7,13 +7,15 @@
     >
       <mat-icon class="text-blue-500">{{ icon }}</mat-icon>
     </div>
-    <!-- Top row with icon and text side by side -->
     <div class="flex">
       <div class="flex flex-col gap-[17px] justify-center h-max">
         <div class="text-xs text-gray-500 capitalize">{{ label }}</div>
-        <span class="text-xl font-semibold text-gray-800">${{ value }}</span>
+        <!-- Conditionally display the dollar sign based on the hasDollarSign flag -->
+        <span class="text-xl font-semibold text-gray-800">
+          <ng-container *ngIf="hasDollarSign; else plainValue">$</ng-container
+          >{{ value }}
+        </span>
       </div>
-      <!-- Dollar amount and percentage centered -->
       <span
         class="h-max mt-auto mb-1 text-xs font-medium text-green-600 bg-green-100 px-2 py-0.5 rounded-full"
       >
@@ -22,3 +24,5 @@
     </div>
   </mat-card-content>
 </mat-card>
+
+<ng-template #plainValue></ng-template>

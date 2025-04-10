@@ -1,27 +1,52 @@
 <div class="flex flex-col gap-5 w-full">
-  <p class="font-semibold text-xl">Analytics</p>
+  <div class="flex col items-center justify-between">
+    <p class="font-semibold text-xl">Analytics</p>
+    <!-- Dropdown Button -->
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{ selectedRange || "Select Range" }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mat Menu for Dropdown -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="selectReportRange('today')">Today</button>
+    <button mat-menu-item (click)="selectReportRange('yesterday')">
+      Yesterday
+    </button>
+    <button mat-menu-item (click)="selectReportRange('last Week')">
+      Last Week
+    </button>
+    <button mat-menu-item (click)="selectReportRange('last Month')">
+      Last Month
+    </button>
+  </mat-menu>
+
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2.5 w-full">
     <app-analytics-card
       icon="show_chart"
       label="total revenue"
-      [value]="(analyticsData$ | async)?.totalRevenue || 0"
+      [value]="(analyticsData$ | async)?.revenue || 0"
+      [hasDollarSign]="true"
     ></app-analytics-card>
     <app-analytics-card
       icon="attach_money"
-      label="today revenue"
+      [label]="selectedRange + ' revenue'"
       [value]="(analyticsData$ | async)?.todayRevenue || 0"
-    ></app-analytics-card
-    ><app-analytics-card
+      [hasDollarSign]="true"
+    ></app-analytics-card>
+    <app-analytics-card
       icon="remove_shopping_cart"
       label="items sold"
       [value]="(analyticsData$ | async)?.itemsSold || 0"
-    ></app-analytics-card
-    ><app-analytics-card
+    ></app-analytics-card>
+    <app-analytics-card
       icon="supervisor_account"
       label="users active"
-      [value]="(analyticsData$ | async)?.usersActive || 0"
+      [value]="(analyticsData$ | async)?.visits || 0"
     ></app-analytics-card>
   </div>
+
   <div class="flex flex-col xl:flex-row gap-4 h-[40vh]">
     <app-analytics-report class="xl:w-[80%]"></app-analytics-report>
     <app-analytics-visits class="xl:w-[20%]"></app-analytics-visits>

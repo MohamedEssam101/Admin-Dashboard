@@ -175,7 +175,6 @@ export class AnalyticsReportComponent implements OnInit, OnDestroy {
           this.salesReportService.getResponseForPeriod(period)
         ),
         map((apiResponse) => {
-          console.log(apiResponse);
           const salesData =
             this.salesReportService.getCurrentValues(apiResponse);
           return {
@@ -197,8 +196,6 @@ export class AnalyticsReportComponent implements OnInit, OnDestroy {
   }
 
   onPeriodChange(period: 'week' | 'month' | 'year'): void {
-    console.log('SSS');
     this.selectedPeriodSubject.next(period);
-    console.log(this.selectedPeriodSubject);
   }
 }
