@@ -32,10 +32,8 @@ export class AnalyticsService {
   getAnalyticsData(): Observable<salesApiResponse> {
     return this.http.get<salesApiResponse>(this.dailyAnalyticsUrl).pipe(
       tap((data) => {
-        console.log(data);
         this.productSubject.next(data);
       }),
-      //sharing the response among components untill the user close the session
       shareReplay(1),
       catchError(this.handleError)
     );
@@ -117,6 +115,12 @@ export class AnalyticsService {
   private convertToDate(dateStr: string): Date {
     return parse(dateStr, 'MM/dd/yyyy', new Date());
   }
+
+  initWithTodayData(): void {
+    const today = new Date(new Date().toDateString());
+    this.getFilteredData(today, today);
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error);
     return throwError(() => 'Something went wrong. Please try again later.');

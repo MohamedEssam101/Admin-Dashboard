@@ -4,6 +4,7 @@
     <!-- Dropdown Button -->
     <ejs-daterangepicker (change)="onDateRangeChange($event)">
       <e-presets>
+        <e-preset label="today" [start]="today" [end]="lastEnd"></e-preset>
         <e-preset
           label="This Week"
           [start]="weekStart"

@@ -3,7 +3,7 @@ import { AnalyticsCardComponent } from './analytics-card/analytics-card.componen
 import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
 import { AnalyticsService } from '../../../services/analytics.service';
 import { filteredSalesData } from '../../../interfaces/analytics-interface';
-import { Observable } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AnalyticsVisitsComponent } from './analytics-visits/analytics-visits.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,18 +37,20 @@ export class AnalyticsComponent implements OnInit {
   private analyticsService = inject(AnalyticsService);
   protected analyticsData$!: Observable<filteredSalesData | null>;
 
-  firstDate!: Date;
-  lastDate!: Date;
   selectedRange = 'Today';
+  // In your component
   ngOnInit() {
-    this.analyticsService.getAnalyticsData().subscribe();
+    this.analyticsService
+      .getAnalyticsData()
+      .pipe(
+        first((data) => !!data),
+        tap(() => this.analyticsService.initWithTodayData())
+      )
+      .subscribe();
 
     this.analyticsData$ = this.analyticsService.filteredData$;
   }
 
-  onChange(e: Event) {
-    console.log(e);
-  }
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(
     new Date(
