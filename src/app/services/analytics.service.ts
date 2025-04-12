@@ -33,6 +33,7 @@ export class AnalyticsService {
     return this.http.get<salesApiResponse>(this.dailyAnalyticsUrl).pipe(
       tap((data) => {
         this.productSubject.next(data);
+        this.initializeWithTodayData();
       }),
       shareReplay(1),
       catchError(this.handleError)
@@ -116,13 +117,20 @@ export class AnalyticsService {
     return parse(dateStr, 'MM/dd/yyyy', new Date());
   }
 
-  initWithTodayData(): void {
-    const today = new Date(new Date().toDateString());
-    this.getFilteredData(today, today);
+  initializeWithTodayData(): void {
+    const today = new Date();
+    const formattedToday = this.formatDate(today);
+    const todayRange = `${formattedToday} - ${formattedToday}`;
+
+    // Set default data
+    this.DisplayChartData(todayRange);
   }
 
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error);
     return throwError(() => 'Something went wrong. Please try again later.');
+  }
+  private formatDate(date: Date): string {
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   }
 }

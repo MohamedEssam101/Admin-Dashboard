@@ -3,7 +3,7 @@ import { AnalyticsCardComponent } from './analytics-card/analytics-card.componen
 import { AnalyticsReportComponent } from './analytics-report/analytics-report.component';
 import { AnalyticsService } from '../../../services/analytics.service';
 import { filteredSalesData } from '../../../interfaces/analytics-interface';
-import { first, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AnalyticsVisitsComponent } from './analytics-visits/analytics-visits.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,16 +38,8 @@ export class AnalyticsComponent implements OnInit {
   protected analyticsData$!: Observable<filteredSalesData | null>;
 
   selectedRange = 'Today';
-  // In your component
   ngOnInit() {
-    this.analyticsService
-      .getAnalyticsData()
-      .pipe(
-        first((data) => !!data),
-        tap(() => this.analyticsService.initWithTodayData())
-      )
-      .subscribe();
-
+    this.analyticsService.getAnalyticsData().subscribe();
     this.analyticsData$ = this.analyticsService.filteredData$;
   }
 
