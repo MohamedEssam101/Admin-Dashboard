@@ -85,8 +85,11 @@
               }
             ],
             "styles": [
+              "node_modules/@syncfusion/ej2-angular-calendars/styles/material.css",
+
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
+
             ],
             "scripts": []
           }

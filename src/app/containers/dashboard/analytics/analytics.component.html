@@ -2,25 +2,31 @@
   <div class="flex col items-center justify-between">
     <p class="font-semibold text-xl">Analytics</p>
     <!-- Dropdown Button -->
-    <button mat-button [matMenuTriggerFor]="menu">
-      {{ selectedRange || "Select Range" }}
-      <mat-icon>arrow_drop_down</mat-icon>
-    </button>
+    <ejs-daterangepicker (change)="onDateRangeChange($event)">
+      <e-presets>
+        <e-preset
+          label="This Week"
+          [start]="weekStart"
+          [end]="weekEnd"
+        ></e-preset>
+        <e-preset
+          label="This Month"
+          [start]="monthStart"
+          [end]="monthEnd"
+        ></e-preset>
+        <e-preset
+          label="Last Month"
+          [start]="lastStart"
+          [end]="lastEnd"
+        ></e-preset>
+        <e-preset
+          label="Last Year"
+          [start]="yearStart"
+          [end]="yearEnd"
+        ></e-preset>
+      </e-presets>
+    </ejs-daterangepicker>
   </div>
-
-  <!-- Mat Menu for Dropdown -->
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="selectReportRange('today')">Today</button>
-    <button mat-menu-item (click)="selectReportRange('yesterday')">
-      Yesterday
-    </button>
-    <button mat-menu-item (click)="selectReportRange('last Week')">
-      Last Week
-    </button>
-    <button mat-menu-item (click)="selectReportRange('last Month')">
-      Last Month
-    </button>
-  </mat-menu>
 
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2.5 w-full">
     <app-analytics-card

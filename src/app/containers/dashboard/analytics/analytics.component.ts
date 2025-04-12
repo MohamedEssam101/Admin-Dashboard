@@ -9,6 +9,11 @@ import { AnalyticsVisitsComponent } from './analytics-visits/analytics-visits.co
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'; // For buttons like mat-button
 import { MatMenuModule } from '@angular/material/menu'; // For dropdown menu functionality
+import { FormsModule } from '@angular/forms';
+import {
+  ChangeEventArgs,
+  DateRangePickerModule,
+} from '@syncfusion/ej2-angular-calendars';
 
 @Component({
   selector: 'app-dashboard-analytics',
@@ -22,6 +27,8 @@ import { MatMenuModule } from '@angular/material/menu'; // For dropdown menu fun
     MatIconModule,
     MatButtonModule, // Make sure this is imported
     MatMenuModule, // Make sure this is imported
+    FormsModule,
+    DateRangePickerModule,
   ],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.css',
@@ -30,6 +37,8 @@ export class AnalyticsComponent implements OnInit {
   private analyticsService = inject(AnalyticsService);
   protected analyticsData$!: Observable<filteredSalesData | null>;
 
+  firstDate!: Date;
+  lastDate!: Date;
   selectedRange = 'Today';
   ngOnInit() {
     this.analyticsService.getAnalyticsData().subscribe();
@@ -37,10 +46,48 @@ export class AnalyticsComponent implements OnInit {
     this.analyticsData$ = this.analyticsService.filteredData$;
   }
 
-  selectReportRange(
-    range: 'today' | 'yesterday' | 'last Week' | 'last Month'
-  ): void {
-    this.selectedRange = range;
-    this.analyticsService.getFilteredData(range);
+  onChange(e: Event) {
+    console.log(e);
+  }
+  public today: Date = new Date(new Date().toDateString());
+  public weekStart: Date = new Date(
+    new Date(
+      new Date().setDate(new Date().getDate() - ((new Date().getDay() + 7) % 7))
+    ).toDateString()
+  );
+  public weekEnd: Date = new Date(
+    new Date(
+      new Date().setDate(
+        new Date(
+          new Date().setDate(
+            new Date().getDate() - ((new Date().getDay() + 7) % 7)
+          )
+        ).getDate() + 6
+      )
+    ).toDateString()
+  );
+  public monthStart: Date = new Date(
+    new Date(new Date().setDate(1)).toDateString()
+  );
+  public monthEnd: Date = this.today;
+  public lastStart: Date = new Date(
+    new Date(
+      new Date(new Date().setMonth(new Date().getMonth() - 1)).setDate(1)
+    ).toDateString()
+  );
+  public lastEnd: Date = this.today;
+  public yearStart: Date = new Date(
+    new Date(new Date().setDate(new Date().getDate() - 365)).toDateString()
+  );
+  public yearEnd: Date = this.today;
+
+  onDateRangeChange(event: ChangeEventArgs): void {
+    const dateRange = event.text; // "3/5/2025 - 4/11/2025"
+
+    if (dateRange) {
+      this.analyticsService.DisplayChartData(dateRange);
+    } else {
+      console.error('Date range is undefined');
+    }
   }
 }
